@@ -1,4 +1,9 @@
+# Bitalino Example made during HKU Bio Hack Day
+# July 3 2018
+# Mark IJzerman
+
 # code being tested with Python 3.7
+
 from bitalino import BITalino
 import time
 import OSC #SO to Machiel yo
@@ -41,15 +46,13 @@ while True:
         # Read samples
         fromBitalino = device.read(nSamples)
         print(fromBitalino[0])
+
+        # transfer functions: http://bitalino.com/datasheets/
+
+        # READ EDA
         # implement transfer function from http://bitalino.com/datasheets/REVOLUTION_EDA_Sensor_Datasheet.pdf
-        fromBitalino = device.read(nSamples)
         ADC_EDA = fromBitalino[0][6]
         EDA_uS = ((ADC_EDA / 2**6) * 3.3) / 0.132
-        # print(EDA_uS)
-
-        ADC_ECG = fromBitalino[0][5]
-        ECG = (((ADC_ECG / 2**6) * 3.3) / 1100) * 1000
-        # print(ECG)
 
         # Push EDA to OSC
         msg = OSC.OSCMessage()
@@ -57,12 +60,26 @@ while True:
         msg.append(EDA_uS)
         client.send(msg)
 
+        # READ ECG
+        ADC_ECG = fromBitalino[0][5]
+        ECG = (((ADC_ECG / 2**6) * 3.3) / 1100) * 1000
+
         # Push ECG to OSC
         msg = OSC.OSCMessage()
         msg.setAddress("/a2")
         msg.append(ECG)
         client.send(msg)
         
+        # READ EEG
+        ADC_EEG = fromBitalino[0][7]
+        EEG = ((((ADC_EDA / 2**6) - 0.5) * 3.3 )/ 40000) * 1000000
+
+        # Push EEG to OSC
+        msg = OSC.OSCMessage()
+        msg.setAddress("/a4")
+        msg.append(EEG)
+        client.send(msg)
+
     except KeyboardInterrupt:
         # Stop BT acquisition
         device.stop()
