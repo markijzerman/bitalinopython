@@ -7,7 +7,7 @@ macAddress = "/dev/tty.BITalino-DevB"
 # running_time = 5
     
 batteryThreshold = 30
-acqChannels = [2] # acquired channel 2 is 3 EDA
+acqChannels = [2] # acquired channel 2 is A3 op het bord.
 samplingRate = 1000
 nSamples = 10
 digitalOutput = [1,1]
