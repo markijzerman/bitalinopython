@@ -2,7 +2,7 @@ import bitalino
 from bitalino import BITalino
 
 # This example will collect data for 5 sec.
-macAddress = "/dev/tty.BITalino-DevB" # on Mac OS replace XX-XX by the 4 final digits of the MAC address
+macAddress = "/dev/tty.BITalino-DevB"
 running_time = 5
     
 batteryThreshold = 30
