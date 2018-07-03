@@ -1,13 +1,13 @@
 # code being tested with Python 3.7
-
 from bitalino import BITalino
+import time
 
 # This example will collect data for 5 sec.
 macAddress = "/dev/tty.BITalino-DevB"
-running_time = 5
+# running_time = 5
     
 batteryThreshold = 30
-acqChannels = [0, 1, 2, 3, 4, 5]
+acqChannels = [2] # acquired channel 2 is 3 EDA
 samplingRate = 1000
 nSamples = 10
 digitalOutput = [1,1]
@@ -22,20 +22,16 @@ device.battery(batteryThreshold)
 print(device.version())
     
 # Start Acquisition
-# device.start(samplingRate, acqChannels)
+device.start(samplingRate, acqChannels)
 
-# start = time.time()
-# end = time.time()
-# while (end - start) < running_time:
-#     # Read samples
-#     print(device.read(nSamples))
-#     end = time.time()
-
-# Turn BITalino led on
-# device.trigger(digitalOutput)
-    
-# Stop acquisition
-# device.stop()
-    
-# Close connection
-# device.close()
+while True:
+    try:
+        # Read samples
+        print(device.read(nSamples))
+        
+    except KeyboardInterrupt:
+        # Stop acquisition
+        device.stop()
+        # Close connection
+        device.close()
+        break
