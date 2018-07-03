@@ -1,5 +1,6 @@
-import bitalino as BITalino
-# from bitalino import BITalino
+# code being tested with Python 3.7
+
+from bitalino import BITalino
 
 # This example will collect data for 5 sec.
 macAddress = "/dev/tty.BITalino-DevB"
@@ -15,7 +16,7 @@ digitalOutput = [1,1]
 device = BITalino(macAddress)
 
 # Set battery threshold
-# device.battery(batteryThreshold)
+device.battery(batteryThreshold)
 
 # Read BITalino version
 print(device.version())
@@ -31,10 +32,10 @@ print(device.version())
 #     end = time.time()
 
 # Turn BITalino led on
-device.trigger(digitalOutput)
+# device.trigger(digitalOutput)
     
 # Stop acquisition
 # device.stop()
     
 # Close connection
-device.close()
+# device.close()

@@ -231,9 +231,9 @@ class BITalino(object):
         """
         time.sleep(0.1)
         if self.serial:
-            self.socket.write(chr(data))
+            self.socket.write(struct.pack('B', data))
         else:
-            self.socket.send(chr(data))
+            self.socket.send(struct.pack('B', data))
     
     def battery(self, value=0):
         """
