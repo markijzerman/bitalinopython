@@ -6,11 +6,9 @@
 
 from bitalino import BITalino
 import time
-import OSC #SO to Machiel yo
+import OSC # SO to Machiel & the ECT/Maplab OG's yo
 import math
 
-
-# This example will collect data for 5 sec.
 macAddress = "/dev/tty.BITalino-DevB"
 
 # Set OSC ip and port
