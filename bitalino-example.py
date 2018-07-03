@@ -13,8 +13,8 @@ port = 4444
     
 batteryThreshold = 30
 acqChannels = [2] # acquired channel 2 is A3 op het bord.
-samplingRate = 1000
-nSamples = 10
+samplingRate = 100
+nSamples = 1
 digitalOutput = [1,1]
 
 # Connect to BITalino
@@ -43,7 +43,7 @@ while True:
         # Push to OSC
         msg = OSC.OSCMessage()
         msg.setAddress("/msg")
-        msg.append(str(fromBitalino))
+        msg.append(fromBitalino)
         client.send(msg)
         
     except KeyboardInterrupt:
